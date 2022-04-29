@@ -1,4 +1,4 @@
-param location string = 'eastus2'
+param location string = resourceGroup().location
 param keyVaultName string
 param mongoDBAccountName string
 param mongoDBName string
