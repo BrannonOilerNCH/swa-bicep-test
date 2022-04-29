@@ -9,11 +9,17 @@ param swaAppLocation string = '/public'
 param swaBranch string = 'main'
 param swaName string
 param swaRepositoryUrl string
-/* Entered manually first time, stored in  */
+
+/** Values are referenced from KeyVault unless a new value is provided */
+@description('Azure Client Id (press enter to use value stored in KeyVault)')
 @secure()
 param azureClientId string
+
+@description('Azure Client Secret (press enter to use value stored in KeyVault)')
 @secure()
 param azureClientSecret string
+
+@description('SWA Repository Token (press enter to use value stored in KeyVault)')
 @secure()
 param swaRepositoryToken string
 
@@ -44,6 +50,7 @@ module mongoDBModule 'mongo-db.bicep' = {
 }
 var mongoDBAccountConnectionStringSecretName = mongoDBModule.outputs.mongoDBAccountConnectionStringSecretName
 
+/** KeyVault upserts */
 module swaAzureClientIdSecret 'key-vault-secret-upsert.bicep' = {
   scope: resourceGroup()
   name: 'swaAzureClientIdSecret'
