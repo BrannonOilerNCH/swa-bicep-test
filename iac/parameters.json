@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "eastus2"
+    },
+    "keyVaultName": {
+      "value": "test-keyvault-oiler1232"
+    },
+    "mongoDBAccountName": {
+      "value": "test-cosmosdb-oiler12332"
+    },
+    "mongoDBName": {
+      "value": "test-mongodb-oiler123232"
+    },
+    "swaApiLocation": {
+      "value": "api"
+    },
+    "swaAppLocation": {
+      "value": "/public"
+    },
+    "swaBranch": {
+      "value": "main"
+    },
+    "swaName": {
+      "value": "test-swa-oiler1234"
+    },
+    "swaRepositoryUrl": {
+      "value": "www.github.com/brannonoiler/bicep-test"
+    }
+  }
+}

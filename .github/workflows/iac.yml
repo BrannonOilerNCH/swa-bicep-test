@@ -1,0 +1,39 @@
+name: IaC
+
+on:
+  workflow_dispatch:
+
+env:
+  RESOURCE_GROUP: csa-swacosmos
+  LOCATION: eastus2
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # Log into Azure
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Create Resource Group
+      - name: resource group
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.35.0
+          inlineScript: |
+            az group create -n ${{ env.RESOURCE_GROUP }} -l ${{ env.LOCATION }}
+
+      # Deploy Bicep file
+      - name: deploy
+        uses: azure/arm-deploy@v1
+        with:
+          scope: resourcegroup
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+          resourceGroupName: ${{ env.RESOURCE_GROUP }}
+          template: ./iac/main.bicep
+          parameters: ./iac/main-parameters.json repositoryToken=${{ secrets.REPOSITORY_PAT }} azureClientId=${{ secrets.AZURE_CLIENT_ID }} azureClientSecret=${{ secrets.AZURE_CLIENT_SECRET }}
+          failOnStdErr: false

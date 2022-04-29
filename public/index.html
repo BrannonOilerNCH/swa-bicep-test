@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Tasks</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <article>
+        <h1>My tasks</h1>
+
+        <section id="user-display">
+            Loading... Please wait...
+        </section>
+
+        <section id="tasks-display" class="hidden">
+            <!-- List for tasks -->
+            <ul id="task-list"></ul>
+
+            <form class="form" id="task-form">
+                <label for="name">Title: </label>
+                <input type="text" id="task-title" required />
+                <button type="submit">Add task</button>
+            </form>
+        </section>
+    </article>
+    <script src="./script.js"></script>
+</body>
+
+</html>
